@@ -27,6 +27,6 @@ export default {
 }
 
 body {
-  background: rgb(240, 248, 253);
+  background: rgb(244, 251, 255) !important;
 }
 </style>
