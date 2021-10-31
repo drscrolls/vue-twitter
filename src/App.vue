@@ -1,16 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <UserProfile/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserProfile from "./components/UserProfile.vue"
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components:{ 
+    UserProfile
   }
+  
 }
 </script>
 
@@ -21,6 +21,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+body {
+  background: rgb(240, 248, 253);
 }
 </style>
