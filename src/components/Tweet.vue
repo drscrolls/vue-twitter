@@ -1,5 +1,5 @@
 <template>
-  <div id="app" align="left">
+  <div align="left" @click="favouriteTweet(index)">
     
       <div class="text-left card card-body p-2 my-2">
         <div class="p-1" align="left">
@@ -23,6 +23,10 @@ export default {
     tweet: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number,
+      required: true
     }
   },
   data(){
@@ -37,6 +41,12 @@ export default {
       ]
     }
   },
+  methods: {
+    favouriteTweet(id){
+      // console.log("tweet id = ", id);
+      this.$emit("favourite", id);
+    }
+  }
 }
 </script>
 

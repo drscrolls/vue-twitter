@@ -13,8 +13,18 @@
       </div>
     </div>
 
+    <div class="col-4 card card-body m-4">
+     <CreateTweet @createTweet="createTweet"/> 
+    </div>
+
+
     <div class="col-4 m-4">
-     <Tweet v-for="(tweet, index) in this.tweets" v-bind:key="index" :username="this.user.username" :tweet="tweet"/>
+     <Tweet v-for="(tweet, index) in this.tweets" 
+        v-bind:key="index" 
+        :username="this.user.username" 
+        :tweet="tweet" 
+        :index="index" 
+        @favourite="toggleFavourite"/> 
     </div>
 
     
@@ -24,12 +34,14 @@
 
 <script>
 import Tweet from "./Tweet.vue"
+import CreateTweet from "./CreateTweet.vue"
 
 
 export default {
   name: 'UserProfile',
   components:{
-    Tweet
+    Tweet,
+    CreateTweet
   },
   data(){
     return {
@@ -67,6 +79,19 @@ export default {
   methods: { 
     followUser(){
       this.followers++;
+    },
+    toggleFavourite(id){
+      console.log("Favourited tweet ", id);
+    },
+    createTweet(tweet){
+      // console.log("created tweet: ", tweet);
+      if(tweet){
+        if(tweet.type == "instant"){
+          this.tweets.unshift({
+            content: tweet.content
+          });
+        }
+      }
     }
   },
   mounted(){
