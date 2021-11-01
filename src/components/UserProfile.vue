@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row mt-4">
       
-      <div class="col-4 ">
+      <div fluid="lg" class="col-4">
         <h5 align="left">Profile</h5>
         <div class="card card-body text-center">
           @{{user.username}} - {{fullName}}
