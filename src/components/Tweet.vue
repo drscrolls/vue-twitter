@@ -1,18 +1,15 @@
 <template>
-  <div align="left" @click="favouriteTweet(index)">
-    
-      <div class="text-left card card-body p-2 my-2">
+  <div class="tweet" align="left" @click="favouriteTweet(index)">
+      <div class="text-left card card-body p-2 mb-2">
         <div class="p-1" align="left">
             <p class="font-weight-bold my-1"><b>@{{username}}</b></p>
             <p class="my-1">{{tweet.content}}</p>
         </div>
       </div>
-
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Tweet',
   props:{

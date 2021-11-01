@@ -1,39 +1,46 @@
 <template>
-  <div id="app" align="center">
-    <div class="col-4 card card-body text-center m-4">
-      @{{user.username}} - {{fullName}}
-      <b>Followers: {{this.followers}}</b>
-      <div class="mt-2 w-25 align-self-center" align="center">
-        <span class="bg-light small rounded d-flex mb-2" v-if="this.user.isAdmin">
-          <center class="text-muted w-100">Admin</center>
-        </span>
-        <button @click="followUser" class="btn btn-primary pointer btn-sm text-center">Follow
-          <span class="fa fa-user"></span>
-        </button>
+  <Header/>
+  <div class="container">
+    <div class="row mt-4">
+      
+      <div class="col-4 ">
+        <h5 align="left">Profile</h5>
+        <div class="card card-body text-center">
+          @{{user.username}} - {{fullName}}
+          <b>Followers: {{this.followers}}</b>
+          <div class="mt-2 w-25 align-self-center" align="center">
+            <span class="bg-light small rounded d-flex mb-2" v-if="this.user.isAdmin">
+              <center class="text-muted w-100">Admin</center>
+            </span>
+            <button @click="followUser" class="btn btn-primary pointer btn-sm text-center">Follow
+              <span class="fa fa-user"></span>
+            </button>
+          </div>
+        </div>
+        <div class="mt-4 card card-body ">
+        <CreateTweet @createTweet="createTweet"/> 
+        </div>
       </div>
+
+
+      <div class="col-8">
+        <h5 align="left">Tweets</h5>
+      <Tweet v-for="(tweet, index) in this.tweets" 
+          v-bind:key="index" 
+          :username="this.user.username" 
+          :tweet="tweet" 
+          :index="index" 
+          @favourite="toggleFavourite"/> 
+      </div>
+
     </div>
-
-    <div class="col-4 card card-body m-4">
-     <CreateTweet @createTweet="createTweet"/> 
-    </div>
-
-
-    <div class="col-4 m-4">
-     <Tweet v-for="(tweet, index) in this.tweets" 
-        v-bind:key="index" 
-        :username="this.user.username" 
-        :tweet="tweet" 
-        :index="index" 
-        @favourite="toggleFavourite"/> 
-    </div>
-
-    
 
   </div>
 </template>
 
 <script>
 import Tweet from "./Tweet.vue"
+import Header from "./Header.vue"
 import CreateTweet from "./CreateTweet.vue"
 
 
@@ -41,6 +48,7 @@ export default {
   name: 'UserProfile',
   components:{
     Tweet,
+    Header,
     CreateTweet
   },
   data(){

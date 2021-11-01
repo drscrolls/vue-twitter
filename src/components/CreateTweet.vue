@@ -3,7 +3,8 @@
       <form @submit.prevent="createTweet">
         <div class="" align="left">
           <label class="my-1" align="left">New tweet</label>
-          <textarea v-model="newTweetContent" class="form-control" rows="2" cols="31"></textarea>
+          <textarea v-model="newTweetContent" class="form-control" :class="{'border-danger': hasExceededCharacterLimit}" rows="2" cols="31"></textarea>
+          <font class="text-left float-right" :class="hasExceededCharacterLimit ? 'text-danger' : 'text-muted'">{{tweetCharacterCount}}/{{maxCharactersAllowed}}</font>
           <div class="mt-2">
             <label>Type</label>
             <select v-model="newTweetType" class="form-control w-100">
@@ -11,7 +12,7 @@
             </select>
           </div>
           <div align="right">
-              <button class="btn btn-primary my-2 btn-sm">Tweet</button>
+              <button class="btn btn-primary my-2 btn-sm" :class="{'disabled': hasExceededCharacterLimit}">Tweet</button>
           </div>
         </div>
       </form>
@@ -26,8 +27,9 @@ export default {
   name: 'CreateTweet',
   data(){
     return {
-      newTweetContent: null,
+      newTweetContent: '',
       newTweetType: "instant",
+      maxCharactersAllowed: 200,
       tweetTypes: [
         {
           value:"draft", name: "Draft"
@@ -36,6 +38,14 @@ export default {
           value:"instant", name: "Instant"
         }
       ]
+    }
+  },
+  computed:{
+    hasExceededCharacterLimit(){
+      return this.tweetCharacterCount > this.maxCharactersAllowed;
+    },
+    tweetCharacterCount(){
+      return this.newTweetContent.length;
     }
   },
   methods: { 
@@ -47,7 +57,7 @@ export default {
               type: this.newTweetType
           };
           this.$emit("createTweet", tweetObject);
-          this.newTweetContent = null;
+          this.newTweetContent = '';
         }
 
       }
@@ -56,3 +66,8 @@ export default {
 }
 </script>
 
+<style scoped>
+.float-right{
+  float: right !important;
+}
+</style>
