@@ -2,7 +2,7 @@
   <Header/>
   <div class="container">
     <div class="row mt-4">
-      
+      <!-- <h2>{{userId}}</h2> -->
       <div fluid="lg" class="col-4">
         <h5 align="left">Profile</h5>
         <div class="card card-body text-center">
@@ -39,10 +39,9 @@
 </template>
 
 <script>
-import Tweet from "./Tweet.vue"
-import Header from "./Header.vue"
-import CreateTweet from "./CreateTweet.vue"
-
+import Tweet from "../components/Tweet.vue"
+import Header from "../components/Header.vue"
+import CreateTweet from "../components/CreateTweet.vue"
 
 export default {
   name: 'UserProfile',
@@ -82,6 +81,9 @@ export default {
   computed: {
     fullName(){
       return `${this.user.firstname} ${this.user.lastname}`;
+    },
+    userId(){
+      return this.$route.params.userId;
     }
   },
   methods: { 
