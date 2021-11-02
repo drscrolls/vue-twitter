@@ -1,10 +1,12 @@
 <template>
   <Header/>
   <div class="container">
-    <div class="row mt-4">
-      <!-- <h2>{{userId}}</h2> -->
+    <div class="row mt-4" v-if="this.user">
+      <h2>{{this.userId}}</h2>
+      <!-- <p>{{this.allUsers[this.userId]}}</p> -->
       <div fluid="lg" class="col-4">
         <h5 align="left">Profile</h5>
+
         <div class="card card-body text-center">
           @{{user.username}} - {{fullName}}
           <b>Followers: {{this.followers}}</b>
@@ -17,7 +19,8 @@
             </button>
           </div>
         </div>
-        <div class="mt-4 card card-body ">
+
+        <div class="mt-4 card card-body">
         <CreateTweet @createTweet="createTweet"/> 
         </div>
       </div>
@@ -25,7 +28,7 @@
 
       <div class="col-8">
         <h5 align="left">Tweets</h5>
-      <Tweet v-for="(tweet, index) in this.tweets" 
+      <Tweet v-for="(tweet, index) in this.user.tweets" 
           v-bind:key="index" 
           :username="this.user.username" 
           :tweet="tweet" 
@@ -34,7 +37,9 @@
       </div>
 
     </div>
-
+    <div class="row mt-4" v-else>
+      <center>No user found</center>
+    </div>
   </div>
 </template>
 
@@ -42,6 +47,7 @@
 import Tweet from "../components/Tweet.vue"
 import Header from "../components/Header.vue"
 import CreateTweet from "../components/CreateTweet.vue"
+import { users } from "../assets/users"
 
 export default {
   name: 'UserProfile',
@@ -53,22 +59,7 @@ export default {
   data(){
     return {
       followers: 0,
-      tweets: [
-        {
-          content: "twitter is amazing"
-        },
-        {
-          content: "vue is fun"
-        }
-      ],
-      user: {
-        id: 1,
-        username: "dr.scrolls",
-        firstname: "Andrew",
-        lastname: "Nickson",
-        email: "dr.scrolls@gmail.com",
-        isAdmin: true
-      }
+      user: null
     }
   },
   watch:{
@@ -97,7 +88,7 @@ export default {
       // console.log("created tweet: ", tweet);
       if(tweet){
         if(tweet.type == "instant"){
-          this.tweets.unshift({
+          this.user.tweets.unshift({
             content: tweet.content
           });
         }
@@ -106,6 +97,8 @@ export default {
   },
   mounted(){
     this.followUser();
+    const allUsers = users.users;
+    this.user = allUsers[this.userId];
   }
 }
 </script>
