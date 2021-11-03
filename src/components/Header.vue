@@ -11,22 +11,39 @@
       </li>
     </ul>
     
-    <form class="form-inline navbar-brand m-0 p-0">
-      <font class="text-white my-4 mx-2">Andy</font>
+    <div class="form-inline navbar-brand m-0 p-0" v-if="this.user">
+      <font class="text-white my-4 mx-2">{{username}}</font>
       <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
-    </form>
+    </div>
   </nav>
   
 </template>
 
 <script>
+import { useStore } from 'vuex';
+
+
 export default {
   name: 'Header',
+  data(){
+    return{
+      user: null,
+    }
+  },
   methods: {
     favouriteTweet(id){
-      // console.log("tweet id = ", id);
       this.$emit("favourite", id);
     }
+  },
+  computed:{
+    username(){
+      return this.user ? this.user.username : "could not get username";
+    }
+  },
+  mounted(){
+      const store = useStore();
+      console.log("store",store);
+      this.user = store.state.User.user;
   }
 }
 </script>
