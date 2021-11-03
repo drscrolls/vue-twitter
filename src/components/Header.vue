@@ -1,16 +1,13 @@
 <template>
  <!-- Image and text -->
   <nav class="navbar px-3 navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">
+    <router-link class="navbar-brand" to="/">
       <img src="../assets/twitter-128.png" width="30" height="30" class="d-inline-block align-top" alt="">
       Twitter
-    </a>
+    </router-link>
     <ul class="nav w-75">
       <li class="nav-item">
         <router-link class="nav-link active text-white" to="/">Home</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link text-white" to="/user/1">Profile</router-link>
       </li>
     </ul>
     

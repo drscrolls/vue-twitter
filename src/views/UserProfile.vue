@@ -2,7 +2,7 @@
   <Header/>
   <div class="container">
     <div class="row mt-4" v-if="this.user">
-      <h2>{{this.userId}}</h2>
+      <!-- <h2>{{this.userId}}</h2> -->
       <!-- <p>{{this.allUsers[this.userId]}}</p> -->
       <div fluid="lg" class="col-4">
         <h5 align="left">Profile</h5>

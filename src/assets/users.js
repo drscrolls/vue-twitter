@@ -163,37 +163,7 @@ export const users = {
             "firstname": "Hale",
             "email": "halechaney@krog.com",
             "isAdmin": true,
-            "tweets": [{
-                    "content": "ad ex aute occaecat"
-                },
-                {
-                    "content": "laborum dolore anim eu occaecat"
-                },
-                {
-                    "content": "ex proident anim tempor"
-                },
-                {
-                    "content": "do veniam dolore aliqua cupidatat laboris labore exercitation duis dolor"
-                },
-                {
-                    "content": "fugiat commodo officia deserunt exercitation"
-                },
-                {
-                    "content": "eu laboris fugiat et quis"
-                },
-                {
-                    "content": "irure non pariatur exercitation"
-                },
-                {
-                    "content": "commodo pariatur ut dolore"
-                },
-                {
-                    "content": "aliqua officia eiusmod ex est dolor reprehenderit tempor"
-                },
-                {
-                    "content": "ex ad sit aute ad incididunt"
-                }
-            ]
+            "tweets": []
         },
         {
             "id": 4,
